@@ -2,12 +2,13 @@ const express = require('express');
 const router = express.Router();
 const postController = require('../controllers/postController');
 const upload = require('../middlewares/upload');
-const verifyToken = require('../middlewares/authMiddleware'); // <--- YENİ
+const verifyToken = require('../middlewares/authMiddleware');
 
-// verifyToken'ı araya ekliyoruz. Artık sadece giriş yapanlar post atabilir.
+// Korumalı Rotalar
 router.post('/posts', verifyToken, postController.createPost);
 router.post('/upload', verifyToken, upload.single('dosya'), postController.uploadFile);
-// İlerde GET /posts herkese açık olabilir ama şimdilik böyle kalsın veya GET'i dışarıda tutabilirsin.
-router.get('/posts', postController.getAllPosts); // Bunu controller'a eklemediysen hata alabilirsin, kontrol et.
+
+// Herkese Açık Rota (BU EKSİKTİ, ARTIK EKLENDİ)
+router.get('/posts', postController.getAllPosts);
 
 module.exports = router;
