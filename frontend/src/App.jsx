@@ -6,16 +6,11 @@ import './App.css'
 import Sidebar from './components/Sidebar'
 import Login from './pages/Login'
 import Home from './pages/Home'
-import CreatePost from './pages/CreatePost'
+import Social from './pages/Social'      // <--- YENİ: Twitter tarzı akış sayfası
+import CreatePost from './pages/CreatePost' // <--- GÜNCELLENDİ: Modern post oluşturma
 
 // --- HENÜZ HAZIR OLMAYAN SAYFALAR İÇİN YER TUTUCULAR ---
-const Social = () => (
-  <div className="page-content">
-    <h1>🌍 Sosyal Alan</h1>
-    <p>Topluluk tartışmaları ve diğer kullanıcıların gönderileri çok yakında burada olacak.</p>
-  </div>
-)
-
+// (İleride bunları ayrı dosyalara taşıyacağız)
 const Profile = () => (
   <div className="page-content">
     <h1>👤 Profilim</h1>
@@ -44,7 +39,7 @@ function App() {
     // 1. Tarayıcı hafızasını temizle
     localStorage.removeItem('token')
     localStorage.removeItem('username')
-    localStorage.removeItem('userId') // ID'yi de silmeyi unutmuyoruz
+    localStorage.removeItem('userId')
 
     // 2. Uygulama durumunu sıfırla (Login ekranına düşürür)
     setToken(null)
@@ -52,7 +47,7 @@ function App() {
   }
 
   // --- SENARYO 1: GİRİŞ YAPILMAMIŞSA ---
-  // Kullanıcıyı direkt Login/Register ekranına yönlendir
+  // Kullanıcıyı direkt Login/Register ekranına hapseder
   if (!token) {
     return (
       <Login 
@@ -85,11 +80,13 @@ function App() {
         {/* Menü açılınca 'shifted' sınıfı eklenir ve içerik sağa kayar */}
         <main className={`main-content ${isSidebarOpen ? 'shifted' : ''}`}>
           <Routes>
+            {/* Rota Tanımları */}
             <Route path="/" element={<Home />} />
-            <Route path="/create" element={<CreatePost />} />
-            <Route path="/social" element={<Social />} />
+            <Route path="/social" element={<Social />} /> {/* Yeni Sosyal Alan */}
+            <Route path="/create" element={<CreatePost />} /> {/* Post Oluşturma */}
             <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Settings />} />
+            
             {/* Bilinmeyen bir adrese gidilirse Ana Sayfaya at */}
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

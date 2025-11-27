@@ -1,57 +1,35 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { MessageSquare, UploadCloud, Search } from 'lucide-react'
 
 const Home = () => {
-  const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    fetchPosts()
-  }, [])
-
-  const fetchPosts = async () => {
-    try {
-      const res = await axios.get('http://localhost:3000/posts')
-      setPosts(res.data)
-    } catch (error) {
-      console.error("Hata:", error)
-    } finally {
-      setLoading(false)
-    }
-  }
-
   return (
-    <div className="page-content">
-      <div style={{display:'flex', justifyContent:'space-between', marginBottom:'20px'}}>
-        <h1>🏠 Ana Sayfa</h1>
-        <button onClick={fetchPosts} style={{background:'transparent', border:'1px solid #444', color:'#ccc', padding:'5px 15px', borderRadius:'5px', cursor:'pointer'}}>🔄 Yenile</button>
+    <div className="page-content" style={{maxWidth: '800px', margin: '0 auto', textAlign: 'center', paddingTop: '50px'}}>
+      
+      <h1 style={{fontSize: '3rem', marginBottom: '10px', border: 'none'}}>Fix Archive 🛡️</h1>
+      <p style={{color: '#888', fontSize: '1.2rem', marginBottom: '40px'}}>
+        Doğrulanmış teknik bilgi ve dosya arşivi.
+      </p>
+
+      <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '20px'}}>
+        
+        {/* Kart 1 */}
+        <div style={{background: '#1e1e1e', padding: '30px', borderRadius: '12px', border: '1px solid #333'}}>
+          <div style={{color: '#646cff', marginBottom: '15px'}}><MessageSquare size={40}/></div>
+          <h3 style={{margin: '0 0 10px 0'}}>Sosyal Alan</h3>
+          <p style={{color: '#aaa', fontSize: '0.9rem', marginBottom: '20px'}}>Topluluk tartışmaları ve güncel akış.</p>
+          <Link to="/social" className="submit-btn" style={{display:'inline-block', textDecoration:'none', width:'auto'}}>Göz At</Link>
+        </div>
+
+        {/* Kart 2 */}
+        <div style={{background: '#1e1e1e', padding: '30px', borderRadius: '12px', border: '1px solid #333'}}>
+          <div style={{color: '#4ade80', marginBottom: '15px'}}><UploadCloud size={40}/></div>
+          <h3 style={{margin: '0 0 10px 0'}}>Paylaşım Yap</h3>
+          <p style={{color: '#aaa', fontSize: '0.9rem', marginBottom: '20px'}}>Sorun çözümlerini veya dosyaları arşivle.</p>
+          <Link to="/create" className="submit-btn" style={{display:'inline-block', textDecoration:'none', width:'auto', background: '#2ea043'}}>Oluştur</Link>
+        </div>
+
       </div>
 
-      {loading ? <p>Yükleniyor...</p> : posts.length === 0 ? (
-        <div style={{textAlign:'center', padding:'50px', background:'#1e1e1e', borderRadius:'12px'}}>
-          <p>Henüz gönderi yok.</p>
-          <Link to="/create" style={{color:'#646cff'}}>İlk gönderiyi sen oluştur!</Link>
-        </div>
-      ) : (
-        <div className="posts-grid">
-          {posts.map((post) => (
-            <div key={post.id} className="post-card">
-              <div className="post-header">
-                <span className="post-user">👤 {post.username}</span>
-                <span>{new Date(post.created_at).toLocaleDateString("tr-TR")}</span>
-              </div>
-              <h3 style={{color:'white', margin:'10px 0'}}>{post.title}</h3>
-              <p style={{color:'#ccc', whiteSpace:'pre-wrap'}}>{post.content}</p>
-              {post.file_url && (
-                <div className="post-image-container">
-                  <img src={post.file_url} alt="Ek" loading="lazy" />
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   )
 }

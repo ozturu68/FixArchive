@@ -362,3 +362,114 @@ body {
   font-size: 0.9rem !important; color: #ccc !important;
 }
 .refresh-btn:hover { background: #222 !important; color: white !important; }
+/* =========================================
+   6. TWITTER TARZI SOSYAL ALAN (SOCIAL FEED)
+   ========================================= */
+.feed-header {
+  position: sticky;
+  top: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-color);
+  z-index: 90;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.feed-header h1 { margin: 0; font-size: 1.3rem; border: none; }
+
+.tweet-card {
+  display: flex;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.tweet-card:hover { background-color: rgba(255, 255, 255, 0.03); }
+
+.tweet-avatar-area { margin-right: 12px; flex-shrink: 0; }
+
+.user-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: bold; color: white; font-size: 1.1rem;
+}
+
+.tweet-content-area { flex: 1; min-width: 0; }
+
+.tweet-header {
+  display: flex; align-items: center; margin-bottom: 4px; font-size: 0.95rem;
+}
+
+.tweet-name { font-weight: 700; color: #fff; margin-right: 5px; }
+.tweet-username, .tweet-time, .tweet-dot { color: #71767b; }
+.tweet-dot { margin: 0 5px; }
+.tweet-more {
+  margin-left: auto; background: none; border: none; color: #71767b; cursor: pointer;
+  padding: 5px; border-radius: 50%;
+}
+.tweet-more:hover { background: rgba(29, 155, 240, 0.1); color: #1d9bf0; }
+
+.tweet-text {
+  color: #e7e9ea; font-size: 1rem; line-height: 1.5; white-space: pre-wrap; margin-bottom: 10px;
+}
+
+.tweet-media {
+  margin-top: 10px; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color);
+}
+.tweet-media img { width: 100%; height: auto; display: block; max-height: 500px; object-fit: cover; }
+
+/* Etkileşim Butonları */
+.tweet-actions {
+  display: flex; justify-content: space-between; margin-top: 12px; max-width: 400px;
+}
+.action-item {
+  display: flex; align-items: center; gap: 5px; color: #71767b; font-size: 0.85rem; transition: 0.2s;
+}
+.action-item:hover svg { background: rgba(255,255,255,0.1); border-radius: 50%; }
+
+.action-item.reply:hover { color: #1d9bf0; }
+.action-item.retweet:hover { color: #00ba7c; }
+.action-item.like:hover { color: #f91880; }
+.action-item.share:hover { color: #1d9bf0; }
+
+/* =========================================
+   7. GÖNDERİ OLUŞTURMA (COMPOSER)
+   ========================================= */
+.modern-input {
+  width: 100%; background: transparent; border: none; color: white; outline: none; padding: 10px 0;
+}
+.title-input { font-size: 1.2rem; font-weight: bold; border-bottom: 1px solid #333; margin-bottom: 10px; }
+.content-input { font-size: 1.1rem; resize: none; min-height: 100px; }
+
+.image-preview-container {
+  position: relative; margin-top: 10px; display: inline-block;
+}
+.image-preview-container img {
+  max-width: 100%; max-height: 300px; border-radius: 16px; border: 1px solid #333;
+}
+.remove-image-btn {
+  position: absolute; top: 5px; left: 5px;
+  background: rgba(0,0,0,0.7); color: white; border: none;
+  border-radius: 50%; width: 30px; height: 30px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.compose-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 15px; border-top: 1px solid #2a2a2a; padding-top: 15px;
+}
+.tool-btn {
+  color: var(--accent-color); cursor: pointer; display: flex; align-items: center; padding: 8px;
+  border-radius: 50%; transition: 0.2s;
+}
+.tool-btn:hover { background: rgba(100, 108, 255, 0.1); }
+
+.tweet-submit-btn {
+  background-color: var(--accent-color); color: white; border: none;
+  padding: 8px 20px; border-radius: 20px; font-weight: bold; cursor: pointer;
+}
+.tweet-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
