@@ -1,0 +1,18 @@
+# Bağımlılıklar
+node_modules/
+**/node_modules/
+
+# Çevre Değişkenleri (Güvenlik için çok önemli!)
+.env
+**/.env
+
+# Build dosyaları
+dist/
+build/
+
+# Loglar
+*.log
+npm-debug.log*
+
+# İşletim sistemi dosyaları
+.DS_Store

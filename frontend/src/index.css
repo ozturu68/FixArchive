@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* İstersen genel arka planı da buraya ekle ki beyaz patlamasın */
+body {
+  background-color: #000;
+  color: #fff;
+}
